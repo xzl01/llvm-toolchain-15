@@ -1,0 +1,46 @@
+From 1b4fdf18bc2aaa2d46bf072475dd9cbcd44a9fee Mon Sep 17 00:00:00 2001
+From: Nikita Popov <npopov@redhat.com>
+Date: Fri, 20 Jan 2023 10:11:01 +0100
+Subject: [PATCH] [libomp] Explicitly include <string> header (NFC)
+
+This is required to build against libstdc++ 13. Debug.h uses
+std::stoi() from <string> without explicitly including it.
+---
+ openmp/libomptarget/include/Debug.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/openmp/libomptarget/include/Debug.h b/openmp/libomptarget/include/Debug.h
+index 4e7da8b7d53f24..387dfe50659e43 100644
+--- a/openmp/libomptarget/include/Debug.h
++++ b/openmp/libomptarget/include/Debug.h
+@@ -39,6 +39,7 @@
+ 
+ #include <atomic>
+ #include <mutex>
++#include <string>
+ 
+ /// 32-Bit field data attributes controlling information presented to the user.
+ enum OpenMPInfoType : uint32_t {
+
+commit 08ce89d3088dc0a6dd9d3b7455222aa35894c1d5
+Author: Nikita Popov <npopov@redhat.com>
+Date:   Thu Jan 19 14:28:58 2023 +0100
+
+    [Flang] Explicitly include cstdint (NFC)
+    
+    This header uses std::int8_t, but does not include cstdint.
+    
+    This fixes the build against libstc++ 13, where some indirect
+    header includes have been removed.
+
+diff --git a/flang/include/flang/Parser/characters.h b/flang/include/flang/Parser/characters.h
+index 1a7d395be2bf..239be8d4bf4a 100644
+--- a/flang/include/flang/Parser/characters.h
++++ b/flang/include/flang/Parser/characters.h
+@@ -14,6 +14,7 @@
+ // also to accomodate Fortran tokenization.
+ 
+ #include <cstddef>
++#include <cstdint>
+ #include <optional>
+ #include <string>
