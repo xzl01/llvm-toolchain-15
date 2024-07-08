@@ -1,3 +1,9 @@
+llvm-toolchain-15 (1:15.0.7-10deepin1) unstable; urgency=medium
+
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Mon, 08 Jul 2024 09:52:05 +0200
+
 llvm-toolchain-15 (1:15.0.7-10) unstable; urgency=medium
 
   [ Gianfranco Costamagna ]
