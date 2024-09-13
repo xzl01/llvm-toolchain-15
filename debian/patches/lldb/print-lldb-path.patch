@@ -27,7 +27,7 @@ Index: llvm-toolchain-15-15.0.6/lldb/bindings/python/get-python-config.py
 +                scheme = 'posix_prefix'
 +                path = sysconfig.get_path('purelib', scheme)
 +            else:
-+                from distutils import sysconfig
++                from setuptools import sysconfig
 +                path = sysconfig.get_python_lib(0, 0)
 +
 +            print(relpath_nodots(path, sys.prefix))
